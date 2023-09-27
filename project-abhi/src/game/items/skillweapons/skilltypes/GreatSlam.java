@@ -32,6 +32,9 @@ public class GreatSlam extends WeaponSkill{
 
     @Override
     public String activate(Actor actor) {
+
+        //attack enemy
+        //iterate on enemy surroundings and reduce their health as well
         return null;
     }
 

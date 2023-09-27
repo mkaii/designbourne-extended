@@ -33,6 +33,8 @@ public class StabAndStep extends WeaponSkill{
 
     @Override
     public String activate(Actor actor) {
+        //attack
+        //wander action just like the enemy
         return null;
     }
 

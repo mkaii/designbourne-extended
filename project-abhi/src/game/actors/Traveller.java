@@ -10,6 +10,8 @@ import game.capabilities.Status;
 import game.items.consumables.HealingVial;
 import game.items.consumables.RefreshingFlask;
 import game.items.skillweapons.weapons.BroadSword;
+import game.items.skillweapons.weapons.GiantHammer;
+import game.items.skillweapons.weapons.GreatKnife;
 import game.items.trade.TradeItem;
 import java.util.ArrayList;
 
@@ -27,6 +29,8 @@ public class Traveller extends Actor {
         inventory.add(new TradeItem(new HealingVial(), 100));
         inventory.add(new TradeItem(new RefreshingFlask(), 75));
         inventory.add(new TradeItem(new BroadSword(), 250));
+        inventory.add(new TradeItem(new GreatKnife(), 300));
+        //inventory.add(new TradeItem(new GiantHammer(), 300));
     }
 
     /**
