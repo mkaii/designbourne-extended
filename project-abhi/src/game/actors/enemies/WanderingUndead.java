@@ -85,7 +85,7 @@ public class WanderingUndead extends Enemy {
         Location currentLocation = map.locationOf(this);
         String returnStr = super.unconscious(actor, map);
 
-        if (Math.random() <= 0.25) {
+        if (Math.random() <= 1) {
             currentLocation.addItem(new OldKey());
             returnStr += "\n" + this.name + " dropped a key!";
         }

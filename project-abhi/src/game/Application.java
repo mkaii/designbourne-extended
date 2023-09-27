@@ -7,12 +7,14 @@ import edu.monash.fit2099.engine.positions.FancyGroundFactory;
 import edu.monash.fit2099.engine.positions.GameMap;
 import edu.monash.fit2099.engine.positions.World;
 import game.actors.Player;
+import game.actors.Traveller;
 import game.actors.enemies.ForestKeeper;
 import game.actors.enemies.HollowSoldier;
 import game.actors.enemies.RedWolf;
 import game.actors.enemies.WanderingUndead;
 import game.grounds.*;
 import game.grounds.Void;
+import game.grounds.drinkable.Puddle;
 import game.items.consumables.Bloodberry;
 import game.items.skillweapons.skilltypes.Focus;
 import game.items.skillweapons.weapons.BroadSword;
@@ -40,11 +42,13 @@ public class Application {
         GameMap abandonedVillage = getAbandonedVillage();
         GameMap burialGround = getBurialGround();
         GameMap ancientWoods = getAncientWoods();
+        GameMap AbxervyerBattleGround = getAbxervyerMap();
 
         // Adding maps to the world
         world.addGameMap(abandonedVillage);
         world.addGameMap(burialGround);
         world.addGameMap(ancientWoods);
+        world.addGameMap(AbxervyerBattleGround);
 
         for (String line : FancyMessage.TITLE.split("\n")) {
             new Display().println(line);
@@ -77,11 +81,13 @@ public class Application {
 
 
         Traveller traveller = new Traveller();
-        world.addPlayer(traveller, ancientWoods.at(46, 10));
+        world.addPlayer(traveller, abandonedVillage.at(30, 5));
 
         // Adding player to the game
-        Player player = new Player("The Abstracted One", '@', 150);
+        Player player = new Player("The Abstracted One", '@', 10000);
         world.addPlayer(player, abandonedVillage.at(29, 5));
+
+
 
         world.run();
     }
@@ -98,17 +104,17 @@ public class Application {
         List<String> map = Arrays.asList(
                 "...............................................+++.........",
                 "...#######...+++.................++........................",
-                "...#__...........................................+++.......",
+                "...#__...........................................+.........",
                 "...#..___#..........++.....................................",
                 "...###.###.......+........#######..........................",
                 "..........................#_____#..........................",
-                "........~~................#_____#..........++..............",
+                "........~~................#_____#..........+...............",
                 ".........~~~..............###_###..........................",
-                "...~~~~~~~~...........++...................................",
+                "...~~~~~~~~...........+....................................",
                 "....~~~~~.................................###..##..........",
                 "~~~~~~~..++...............................#___..#..........",
                 "~~~~~~....................................#..___#..........",
-                "~~~~~~~~~.................+++.............#######..........");
+                "~~~~~~~~~.................................#######..........");
 
         GameMap gameMap = new GameMap(groundFactory, map);
 
@@ -193,6 +199,37 @@ public class Application {
 
         // Add bloodberry to the ancient woods
         gameMap.at(10, 9).addItem(new Bloodberry());
+
+        return gameMap;
+    }
+
+    private static GameMap getAbxervyerMap() {
+        FancyGroundFactory groundFactory = new FancyGroundFactory(new Dirt(),
+                new Wall(), new Floor(), new Puddle(), new Void());
+
+        List<String> map = Arrays.asList(
+                "...........+++++++........~~~~~~++....~~",
+                "...........++++++.........~~~~~~+.....~~",
+                "............++++...........~~~~~......++",
+                "............+.+.............~~~.......++",
+                "..........++~~~.......................++",
+                ".........+++~~~....#######...........+++",
+                ".........++++~.....#_____#.........+++++",
+                "..........+++......#_____#........++++++",
+                "..........+++......###_###.......~~+++++",
+                "..........~~.....................~~...++",
+                "..........~~~..................++.......",
+                "...........~~....~~~~~.........++.......",
+                "......~~....++..~~~~~~~~~~~......~......",
+                "....+~~~~..++++++++~~~~~~~~~....~~~.....",
+                "....+~~~~..++++++++~~~..~~~~~..~~~~~....");
+
+        GameMap gameMap = new GameMap(groundFactory, map);
+
+        // Adding graveyards or spawners for enemies
+   /*     gameMap.at(25, 14).setGround(new Graveyard(new HollowSoldier(), 0.10f));
+        gameMap.at(12, 3).setGround(new Graveyard(new HollowSoldier(), 0.10f));
+        gameMap.at(18, 12).setGround(new Graveyard(new HollowSoldier(), 0.10f));*/
 
         return gameMap;
     }
