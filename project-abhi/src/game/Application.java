@@ -76,6 +76,9 @@ public class Application {
                 .setGround(new Door(burialGround));
 
 
+        Traveller traveller = new Traveller();
+        world.addPlayer(traveller, ancientWoods.at(46, 10));
+
         // Adding player to the game
         Player player = new Player("The Abstracted One", '@', 150);
         world.addPlayer(player, abandonedVillage.at(29, 5));
