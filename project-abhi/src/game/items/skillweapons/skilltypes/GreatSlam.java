@@ -35,6 +35,7 @@ public class GreatSlam extends WeaponSkill{
 
         //attack enemy
         //iterate on enemy surroundings and reduce their health as well
+        //maybe use the destination code and figure out surrounding actors and decrease their health
         return null;
     }
 
