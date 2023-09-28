@@ -27,26 +27,17 @@ public class GiantHammer extends SkillWeapon implements Tradeable {
     @Override
     public String buy(Actor seller, Actor buyer, int price) {
 
-        String output = "";
-
-        if (buyer.getBalance() < price) {
-            output += buyer + " does not have enough runes to buy " + this + " from " + seller + ".";
-        }
-        else {
-            buyer.deductBalance(price);
-            seller.addBalance(price);
-
-            buyer.addItemToInventory(new BroadSword());
-            output += buyer + " bought " + this + " from " + seller + " for " + price + " runes.";
-        }
-
-
-        return output;
+       return null;
     }
 
     @Override
     public String sell(Actor seller, Actor buyer, int price) {
-        return null;
+
+        seller.removeItemFromInventory(this);
+        seller.addBalance(price);
+        buyer.deductBalance(price);
+
+        return seller + " sold " + this + " to " + buyer + " for " + price + " runes.";
     }
 
 
