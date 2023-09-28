@@ -6,6 +6,7 @@ import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ActivateWeaponSkillAction;
 import game.actions.AttackAction;
 import game.capabilities.Status;
+import game.items.consumables.HealingVial;
 import game.items.skillweapons.skilltypes.Focus;
 import game.items.skillweapons.skilltypes.StabAndStep;
 import game.items.skillweapons.skilltypes.WeaponSkill;
@@ -28,30 +29,55 @@ public class GreatKnife extends SkillWeapon implements Tradeable {
 
     @Override
     public String buy(Actor seller, Actor buyer, int price) {
-        String output = "";
+        String result = "";
 
-        if (buyer.getBalance() < price) {
-            output += buyer + " does not have enough runes to buy " + this + " from " + seller + ".";
+        if (Math.random() <= 0.05) {
+            price *= 3;
+            result += seller + " is charging 3 times more for " + this + "\n";
         }
-        else {
+
+        if (buyer.getBalance() >= price) {
+            buyer.addItemToInventory(new GreatKnife());
             buyer.deductBalance(price);
             seller.addBalance(price);
-
-            buyer.addItemToInventory(new BroadSword());
-            output += buyer + " bought " + this + " from " + seller + " for " + price + " runes.";
+            result += buyer + " bought " + this + " from " + seller + " for " + price + " runes.";
+        } else {
+            result += buyer + " does not have enough runes to buy " + this + " from " + seller + ".";
         }
 
 
-        return output;
+        return result;
     }
 
     @Override
     public String sell(Actor seller, Actor buyer, int price) {
-        seller.removeItemFromInventory(this);
-        seller.addBalance(price);
-        buyer.deductBalance(price);
+        String output = "";
 
-        return seller + " sold " + this + " to " + buyer + " for " + price + " runes.";
+        // Calculate the amount the player will receive if the traveler doesn't take it.
+        int receivedRunes = getValue();
+
+        // Check if the player has less than 175 runes.
+        if (seller.getBalance() < receivedRunes) {
+            receivedRunes = seller.getBalance();
+        }
+
+        // Determine if the traveler takes the runes.
+        boolean travelerTakesRunes = Math.random() <= 0.10;
+
+        if (travelerTakesRunes) {
+            // If the traveler takes the runes, deduct them from the player's balance.
+            seller.deductBalance(receivedRunes);
+            output += "The traveler took " + receivedRunes + " runes from " + seller + ".\n";
+        } else {
+            // If the traveler doesn't take the runes, add the received amount to the player's balance.
+            seller.addBalance(receivedRunes);
+            output += seller + " received " + receivedRunes + " runes from selling " + this + " to " + buyer + ".\n";
+        }
+
+        buyer.addItemToInventory(this);
+        output += seller + " sold " + this + " to " + buyer + " for " + receivedRunes + " runes.";
+
+        return output;
     }
 
 
