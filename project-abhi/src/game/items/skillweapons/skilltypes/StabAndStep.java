@@ -37,7 +37,7 @@ public class StabAndStep extends WeaponSkill{
         //attack
         //wander action just like the enemy
         this.isActive = true;
-        return "Stab and Step was activated";
+        return "Stab and Step activated on " + getWeapon() + "!";
     }
 
     @Override

@@ -23,7 +23,7 @@ public class GreatSlam extends WeaponSkill{
 
 
     public GreatSlam(SkillWeapon weapon, float damageBonus, int hitRate) {
-        super("Stab And Step", weapon);
+        super("Great Slam", weapon);
         this.damageBonus = damageBonus/100;
         this.hitRate = hitRate;
         this.weaponInitialHitRate = weapon.chanceToHit();
@@ -36,7 +36,8 @@ public class GreatSlam extends WeaponSkill{
         //attack enemy
         //iterate on enemy surroundings and reduce their health as well
         //maybe use the destination code and figure out surrounding actors and decrease their health
-        return null;
+        this.isActive = true;
+        return "Great Slam activated on " + getWeapon() + "!";
     }
 
     @Override

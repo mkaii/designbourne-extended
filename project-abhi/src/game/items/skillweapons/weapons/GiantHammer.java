@@ -5,6 +5,7 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ActivateWeaponSkillAction;
 import game.actions.AttackAction;
+import game.actions.GreatSlamAttackAction;
 import game.capabilities.Status;
 import game.items.skillweapons.skilltypes.Focus;
 import game.items.skillweapons.skilltypes.GreatSlam;
@@ -67,7 +68,7 @@ public class GiantHammer extends SkillWeapon implements Tradeable {
         if (otherActor.hasCapability(Status.TRADER)) {
             actions.add(new TradeItem(this, this.getValue()).getSellAction(otherActor));
         } else {
-            actions.add(new AttackAction(otherActor, location.toString(), this));
+            actions.add(new GreatSlamAttackAction(otherActor, location.toString(), this));
         }
 
         return actions;
