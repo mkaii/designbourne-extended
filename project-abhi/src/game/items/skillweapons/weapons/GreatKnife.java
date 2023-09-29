@@ -5,9 +5,8 @@ import edu.monash.fit2099.engine.actors.Actor;
 import edu.monash.fit2099.engine.positions.Location;
 import game.actions.ActivateWeaponSkillAction;
 import game.actions.AttackAction;
+import game.actions.KnifeAttackAction;
 import game.capabilities.Status;
-import game.items.consumables.HealingVial;
-import game.items.skillweapons.skilltypes.Focus;
 import game.items.skillweapons.skilltypes.StabAndStep;
 import game.items.skillweapons.skilltypes.WeaponSkill;
 import game.items.trade.TradeItem;
@@ -106,7 +105,7 @@ public class GreatKnife extends SkillWeapon implements Tradeable {
         if (otherActor.hasCapability(Status.TRADER)) {
             actions.add(new TradeItem(this, this.getValue()).getSellAction(otherActor));
         } else {
-            actions.add(new AttackAction(otherActor, location.toString(), this));
+            actions.add(new KnifeAttackAction(otherActor, location.toString(), this));//override this attack action to move as well
         }
 
         return actions;

@@ -29,7 +29,7 @@ public abstract class WeaponSkill {
     /**
      * The boolean to keep track of whether the weapon skill is active or not.
      */
-    protected boolean isActive;
+    public boolean isActive;
 
     /**
      * Constructor for WeaponSkill.

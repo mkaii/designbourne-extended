@@ -18,6 +18,7 @@ import game.grounds.drinkable.Puddle;
 import game.items.consumables.Bloodberry;
 import game.items.skillweapons.skilltypes.Focus;
 import game.items.skillweapons.weapons.BroadSword;
+import game.items.skillweapons.weapons.GreatKnife;
 import game.items.skillweapons.weapons.SkillWeapon;
 
 /**
@@ -125,6 +126,12 @@ public class Application {
 
 
         SkillWeapon broadSword = new BroadSword();
+        broadSword.setWeaponSkill(new Focus(broadSword, 10, 80));
+        gameMap.at(27, 6).addItem(broadSword);
+
+        SkillWeapon knife = new GreatKnife();
+        gameMap.at(27, 5).addItem(knife);
+        
         broadSword.setWeaponSkill(new Focus(broadSword, 10, 80));
         gameMap.at(27, 6).addItem(broadSword);
 

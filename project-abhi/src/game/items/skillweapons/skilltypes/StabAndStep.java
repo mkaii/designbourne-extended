@@ -20,27 +20,29 @@ public class StabAndStep extends WeaponSkill{
     /**
      * The initial hit rate of the weapon.
      */
-    private final int weaponInitialHitRate;
+    private final SkillWeapon weapon;
 
 
     public StabAndStep(SkillWeapon weapon, float damageBonus, int hitRate) {
         super("Stab And Step", weapon);
         this.damageBonus = damageBonus/100;
         this.hitRate = hitRate;
-        this.weaponInitialHitRate = weapon.chanceToHit();
+        this.weapon = weapon;
     }
 
 
     @Override
     public String activate(Actor actor) {
+        //this should maybe just set the flag for the new action
         //attack
         //wander action just like the enemy
-        return "stab and step was activated";
+        this.isActive = true;
+        return "Stab and Step was activated";
     }
 
     @Override
     public String deactivate() {
-        return null;
+        return "Stab and Step was De-Activated";
     }
 
     @Override
