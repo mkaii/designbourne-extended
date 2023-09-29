@@ -32,10 +32,10 @@ public class GreatSlamAttackAction extends AttackAction{
 
         Location targetLocationBeforePotentialDeath = map.locationOf(target);
         String attackActionResult = super.execute(actor,map);
-
+        boolean didActionMiss = attackActionResult.contains("misses");
         //inflict damage to nearby players if skill active
 
-        if(skillWeapon.getWeaponSkill().isActive)
+        if(skillWeapon.getWeaponSkill().isActive && !didActionMiss)
         {
 
             skillWeapon.updateDamageMultiplier(0.5f);

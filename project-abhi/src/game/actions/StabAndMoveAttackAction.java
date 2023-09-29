@@ -24,9 +24,9 @@ public class StabAndMoveAttackAction extends AttackAction{
     public String execute(Actor actor, GameMap map) {
 
         String attackActionResult = super.execute(actor,map);
-
+        boolean didActionMiss = attackActionResult.contains("misses");
         //move to safe location if skill activated
-        if(greatKnife.getWeaponSkill().isActive)
+        if(greatKnife.getWeaponSkill().isActive && !didActionMiss)
         {
             Behaviour behaviour = new WanderBehaviour();
             String moveActionResult = behaviour.getAction(actor,map).execute(actor,map);

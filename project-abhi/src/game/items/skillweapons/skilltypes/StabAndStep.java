@@ -1,6 +1,7 @@
 package game.items.skillweapons.skilltypes;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperations;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import game.items.skillweapons.weapons.SkillWeapon;
 
@@ -33,10 +34,12 @@ public class StabAndStep extends WeaponSkill{
 
     @Override
     public String activate(Actor actor) {
-        //this should maybe just set the flag for the new action
-        //attack
-        //wander action just like the enemy
+
         this.isActive = true;
+
+        //reduce stamina:
+        int staminaCost = (int) Math.round(actor.getAttributeMaximum(BaseActorAttributes.STAMINA) * 0.25);
+        actor.modifyAttribute(BaseActorAttributes.STAMINA, ActorAttributeOperations.DECREASE, staminaCost);
         return "Stab and Step activated on " + getWeapon() + "!";
     }
 
@@ -53,6 +56,7 @@ public class StabAndStep extends WeaponSkill{
     @Override
     public boolean canActivate(Actor actor) {
         boolean actorCanActivate = false;
+
         int actorStamina = actor.getAttribute(BaseActorAttributes.STAMINA);
         int actorMaxStamina = actor.getAttributeMaximum(BaseActorAttributes.STAMINA);
 

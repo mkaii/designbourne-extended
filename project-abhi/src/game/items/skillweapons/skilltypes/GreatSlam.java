@@ -1,6 +1,7 @@
 package game.items.skillweapons.skilltypes;
 
 import edu.monash.fit2099.engine.actors.Actor;
+import edu.monash.fit2099.engine.actors.attributes.ActorAttributeOperations;
 import edu.monash.fit2099.engine.actors.attributes.BaseActorAttributes;
 import game.items.skillweapons.weapons.SkillWeapon;
 
@@ -33,9 +34,8 @@ public class GreatSlam extends WeaponSkill{
     @Override
     public String activate(Actor actor) {
 
-        //attack enemy
-        //iterate on enemy surroundings and reduce their health as well
-        //maybe use the destination code and figure out surrounding actors and decrease their health
+        int staminaCost = (int) Math.round(actor.getAttributeMaximum(BaseActorAttributes.STAMINA) * 0.05);
+        actor.modifyAttribute(BaseActorAttributes.STAMINA, ActorAttributeOperations.DECREASE, staminaCost);
         this.isActive = true;
         return "Great Slam activated on " + getWeapon() + "!";
     }
