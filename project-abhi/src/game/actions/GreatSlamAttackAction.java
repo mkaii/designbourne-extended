@@ -39,6 +39,10 @@ public class GreatSlamAttackAction extends AttackAction{
         {
 
             skillWeapon.updateDamageMultiplier(0.5f);
+
+            //original hit rate
+            int originalHitRate = skillWeapon.chanceToHit();
+            skillWeapon.updateHitRate(100);
             Display d = new Display();
 
 
@@ -52,8 +56,9 @@ public class GreatSlamAttackAction extends AttackAction{
                     d.println(spreadAttackResult);
                 }
             }
-            //reset damage multiplier
+            //reset weapon damage and hit rate
             skillWeapon.updateDamageMultiplier(1.0f);
+            skillWeapon.updateHitRate(originalHitRate);
 
         }
 
