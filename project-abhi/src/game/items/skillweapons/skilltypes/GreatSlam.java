@@ -42,7 +42,8 @@ public class GreatSlam extends WeaponSkill{
 
     @Override
     public String deactivate() {
-        return null;
+        isActive = false;
+        return "Grand Slam Skill is deactivated!";
     }
 
     @Override

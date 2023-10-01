@@ -56,6 +56,9 @@ public class GreatSlamAttackAction extends AttackAction{
                     d.println(spreadAttackResult);
                 }
             }
+            String deactivationResult = skillWeapon.getWeaponSkill().deactivate();
+            d.println(deactivationResult);
+
             //reset weapon damage and hit rate
             skillWeapon.updateDamageMultiplier(1.0f);
             skillWeapon.updateHitRate(originalHitRate);

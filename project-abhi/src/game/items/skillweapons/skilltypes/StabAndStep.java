@@ -45,7 +45,8 @@ public class StabAndStep extends WeaponSkill{
 
     @Override
     public String deactivate() {
-        return "Stab and Step was De-Activated";
+        isActive = false;
+        return "Stab and Step skill is deactivated";
     }
 
     @Override
