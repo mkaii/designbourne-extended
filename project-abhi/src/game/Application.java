@@ -80,9 +80,10 @@ public class Application {
                         ancientWoods.getYRange().max())
                 .setGround(new Door(burialGround));
 
-
+        // Adding a traveller to the building of the forest
         Traveller traveller = new Traveller();
-        world.addPlayer(traveller, abandonedVillage.at(30, 5));
+        world.addPlayer(traveller, ancientWoods.at(22, 3));
+
 
         // Adding player to the game
         Player player = new Player("The Abstracted One", '@', 10000);
@@ -204,8 +205,18 @@ public class Application {
         gameMap.at(10, 10).setGround(new EmptyHunts(new ForestKeeper(), 0.15f));
         gameMap.at(10, 3).setGround(new Bush(new RedWolf(), 0.30f));
 
+        //add empty hunts and Bushes for spawning enemies inside the building near the traveller
+        gameMap.at(21, 3).setGround(new EmptyHunts(new ForestKeeper(), 0.15f));
+        gameMap.at(22, 4).setGround(new EmptyHunts(new ForestKeeper(), 0.15f));
+        gameMap.at(18, 3).setGround(new Bush(new RedWolf(), 0.30f));
+        gameMap.at(19, 4).setGround(new Bush(new RedWolf(), 0.30f));
+
         // Add bloodberry to the ancient woods
         gameMap.at(10, 9).addItem(new Bloodberry());
+
+        //add a hammer in the building
+        SkillWeapon hammer = new GiantHammer();
+        gameMap.at(18, 4).addItem(hammer);
 
         return gameMap;
     }
