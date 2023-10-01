@@ -72,8 +72,7 @@ public class GreatKnife extends SkillWeapon implements Tradeable {
             output += seller + " received " + receivedRunes + " runes from selling " + this + " to " + buyer + ".\n";
         }
 
-        output += seller + " sold " + this + " to " + buyer + " for " + receivedRunes + " runes.";
-
+        seller.removeItemFromInventory(this);
         return output;
     }
 
