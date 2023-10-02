@@ -25,7 +25,7 @@ public class Player extends Actor {
     /**
      * The intrinsic weapon damage for the player
      */
-    private static int intrinsicWeaponDamage = 1000;
+    private static int intrinsicWeaponDamage = 15;
 
     /**
      * The damage multiplier for the player
@@ -48,7 +48,6 @@ public class Player extends Actor {
         super(name, displayChar, hitPoints);
         this.addCapability(Status.HOSTILE_TO_ENEMY);
         this.addCapability(Ability.CAN_ENTER_FLOORS);
-        addBalance(1000000);
 
         this.addAttribute(BaseActorAttributes.STAMINA, new BaseActorAttribute(200));
     }

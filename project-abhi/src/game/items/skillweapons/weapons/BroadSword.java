@@ -23,7 +23,7 @@ public class BroadSword extends SkillWeapon implements Tradeable {
      * Constructor for BroadSword.
      */
     public BroadSword() {
-        super("Broadsword", '1', 500, "Slashes", 100);
+        super("Broadsword", '1', 110, "Slashes", 80);
         this.setWeaponSkill(new Focus(this, 10, 80));
     }
 
