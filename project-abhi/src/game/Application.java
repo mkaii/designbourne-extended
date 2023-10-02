@@ -18,6 +18,7 @@ import game.grounds.drinkable.Puddle;
 import game.items.consumables.Bloodberry;
 import game.items.skillweapons.skilltypes.Focus;
 import game.items.skillweapons.weapons.BroadSword;
+import game.items.skillweapons.weapons.GiantHammer;
 import game.items.skillweapons.weapons.GreatKnife;
 import game.items.skillweapons.weapons.SkillWeapon;
 
@@ -80,6 +81,11 @@ public class Application {
                         ancientWoods.getYRange().max())
                 .setGround(new Door(burialGround));
 
+        // add a new door in ancientWoods that travels to AbxervyerBattleGround
+        ancientWoods.at(ancientWoods.getXRange().max()-3,
+                        ancientWoods.getYRange().max()-1)
+                .setGround(new Door(AbxervyerBattleGround));
+
         // Adding a traveller to the building of the forest
         Traveller traveller = new Traveller();
         world.addPlayer(traveller, ancientWoods.at(22, 3));
@@ -129,9 +135,6 @@ public class Application {
         SkillWeapon broadSword = new BroadSword();
         broadSword.setWeaponSkill(new Focus(broadSword, 10, 80));
         gameMap.at(27, 6).addItem(broadSword);
-
-        SkillWeapon knife = new GreatKnife();
-        gameMap.at(27, 5).addItem(knife);
         
         broadSword.setWeaponSkill(new Focus(broadSword, 10, 80));
         gameMap.at(27, 6).addItem(broadSword);
